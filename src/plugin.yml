@@ -13,3 +13,4 @@ commands:
 permissions:
     mcwiki.lang:
         description: permission to change the Language
+        default: op

@@ -60,7 +60,7 @@ public class MCWiki extends JavaPlugin {
             File configFile = new File(getDataFolder(), "config.yml");
             if (!configFile.exists()) {
                 getLogger().info("Config.yml not found, creating!");
-                getConfig().set("general.lang", "de-DE");
+                getConfig().set("general.lang", "en-EN");
                 // German config
                 getConfig().set("lang.de-DE.wikiUrl", "http://minecraft-de.gamepedia.com/");
                 getConfig().set("lang.de-DE.notFound", "Die gewuenschte Seite konnte nicht gefunden werden.");
