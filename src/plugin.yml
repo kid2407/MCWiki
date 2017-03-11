@@ -1,0 +1,8 @@
+name: MCWiki
+version: 1.0.0
+author: Tobias Franz
+main: de.kid2407.mcwiki.main.MCWiki
+commands:
+      wiki:
+               description: Öffne eine Seite im MC-Wiki
+               usage: /wiki <Item|Block>
