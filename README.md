@@ -8,4 +8,4 @@ A Wiki-Plugin for Spigot based Minecraft-Servers
 
 ## Download:
 
-- The Download for the current Minecraft-Version can be found [here](http://example.com "Download MCWiki")
+- The Download for the current Minecraft-Version can be found [here](https://www.spigotmc.org/resources/mcwiki.37672/ "Download MCWiki")
