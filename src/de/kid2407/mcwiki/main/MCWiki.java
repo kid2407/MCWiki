@@ -1,6 +1,7 @@
 package de.kid2407.mcwiki.main;
 
 import de.kid2407.mcwiki.command.CommandWiki;
+import de.kid2407.mcwiki.command.CommandWikilang;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,7 +19,9 @@ public class MCWiki extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println("Enabling MCWiki-Plugin...");
-        this.getCommand("wiki").setExecutor(new CommandWiki());
+        createConfig();
+        this.getCommand("wiki").setExecutor(new CommandWiki(this));
+        this.getCommand("wikilang").setExecutor(new CommandWikilang(this));
 
         try {
             final File[] libs = new File[]{
@@ -46,6 +49,44 @@ public class MCWiki extends JavaPlugin {
 
     @Override
     public void onDisable() {
+    }
+
+    private void createConfig() {
+        try {
+            if (!getDataFolder().exists()) {
+                getDataFolder().mkdirs();
+                saveDefaultConfig();
+            }
+            File configFile = new File(getDataFolder(), "config.yml");
+            if (!configFile.exists()) {
+                getLogger().info("Config.yml not found, creating!");
+                getConfig().set("general.lang", "de-DE");
+                // German config
+                getConfig().set("lang.de-DE.wikiUrl", "http://minecraft-de.gamepedia.com/");
+                getConfig().set("lang.de-DE.notFound", "Die gewuenschte Seite konnte nicht gefunden werden.");
+                getConfig().set("lang.de-DE.noConnection", "Das Wiki konnte nicht erreicht werden.");
+                getConfig().set("lang.de-DE.urlError", "Fehlerhafte URL.");
+                getConfig().set("lang.de-DE.ioException", "IOExcetion beim laden/erzeugen der Konfigurationsdateien");
+                getConfig().set("lang.de-DE.newLang", "Nun ist Deutsch als Sprache eingestellt.");
+                getConfig().set("lang.de-DE.langError", "Die angegebene Sprache konnte nicht gefunden werden.");
+                // English config
+                getConfig().set("lang.en-EN.wikiUrl", "http://minecraft.gamepedia.com/");
+                getConfig().set("lang.en-EN.notFound", "The requested page could not be found.");
+                getConfig().set("lang.en-EN.noConnection", "Error while connecting to the Wiki.");
+                getConfig().set("lang.en-EN.urlError", "Misformed URL.");
+                getConfig().set("lang.en-EN.ioException", "IOException while reading/creating config files.");
+                getConfig().set("lang.en-EN.newLang", "You've selected English as your language.");
+                getConfig().set("lang.en-EN.langError", "The specified Language doesn't exist.");
+                // Save default config
+                saveConfig();
+            } else {
+                getLogger().info("Config.yml found, loading!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     private void addClassPath(final URL url) throws IOException {

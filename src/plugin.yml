@@ -3,6 +3,13 @@ version: 1.0.0
 author: Tobias Franz
 main: de.kid2407.mcwiki.main.MCWiki
 commands:
-      wiki:
-               description: Öffne eine Seite im MC-Wiki
-               usage: /wiki <Item|Block>
+    wiki:
+        description: Open the corresponding Page in the Wiki
+        usage: /wiki <Item|Block>
+    wikilang:
+        decription: Change the language you wish to use for the Links issued by /wiki
+        usage: /wikilang <lang>
+        permission: mcwiki.lang
+permissions:
+    mcwiki.lang:
+        description: permission to change the Language
